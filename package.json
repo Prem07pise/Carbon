@@ -64,6 +64,7 @@
         "tailwind-merge": "^3.3.1",
         "tailwindcss-animate": "^1.0.7",
         "three": "^0.161.0",
+        "framer-motion": "^10.12.16",
         "uuid": "^9.0.1",
         "vaul": "^1.1.2",
         "xlsx": "^0.18.5",

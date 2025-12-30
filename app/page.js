@@ -9,13 +9,15 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { LineChart, Line, PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
-import { Calendar, TrendingDown, TrendingUp, AlertCircle, Upload, Plus, Trash2, FileDown, Lightbulb } from 'lucide-react';
+import { Calendar, TrendingDown, TrendingUp, AlertCircle, Upload, Plus, Trash2, FileDown, Lightbulb, Calculator as CalcIcon, Home, Car, ShoppingBag, Repeat, Leaf, Droplet } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
 import ThreeScene from '@/components/ui/three-scene';
 import { jsPDF } from 'jspdf';
 import * as XLSX from 'xlsx';
 import Calculator from '@/components/ui/calculator';
 import Chatbot from '@/components/ui/chatbot';
+import ContactForm from '@/components/ui/contact-form';
 import { Toaster } from '@/components/ui/toaster';
 
 const COLORS = ['#10b981', '#059669', '#3b82f6', '#06b6d4', '#f59e0b', '#f97316', '#ef4444', '#8b5cf6', '#a78bfa'];
@@ -454,6 +456,97 @@ export default function App() {
     waste: ['landfill', 'recycled', 'composted']
   };
 
+  const [started, setStarted] = useState(false);
+  const [suggestionForm, setSuggestionForm] = useState({ name: '', email: '', suggestion: '' });
+
+  if (!started) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 flex items-center">
+        <Toaster />
+        <main className="container mx-auto px-4 py-24 text-center">
+          <div className="max-w-3xl mx-auto hero-card text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center text-center"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} className="w-40 h-40 mx-auto rounded mb-6 shadow-md three-floating">
+                <ThreeScene className="w-full h-full rounded" />
+              </motion.div>
+
+              <motion.h1
+                initial={{ scale: 0.99 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="text-5xl font-extrabold hero-title mb-4"
+              >
+                Carbon Footprint Analytics
+              </motion.h1>
+
+              <p className="text-lg text-gray-700 max-w-2xl mb-6">
+                Understand and reduce your organisation's carbon emissions with clear metrics, trends, and AI-driven recommendations. Track emissions by category and department, import data, and export reports.
+              </p>
+
+              <div className="hero-features">
+                <div className="feature-pill">Department-level tracking</div>
+                <div className="feature-pill">AI recommendations</div>
+                <div className="feature-pill">PDF & Excel export</div>
+              </div>
+
+              <div className="mt-6 hero-cta flex items-center justify-center gap-4">
+                <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
+                  <Button onClick={() => { setStarted(true); setActiveTab('dashboard'); }} className="btn-stunning pulse">
+                    Get Started
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+                  <Button variant="outline" onClick={() => setStarted(true)} className="rounded border border-emerald-200 px-5 py-3 text-emerald-700 hover:bg-emerald-50">
+                    Explore App
+                  </Button>
+                </motion.div>
+              </div>
+
+              <div className="mt-6 text-sm text-gray-600">
+                <p><strong>Why it matters:</strong> Measuring your carbon footprint is the first step toward meaningful reduction — leading to cost savings and better sustainability outcomes.</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* About Section */}
+          <section className="about-section mt-12 bg-white rounded-lg shadow-sm p-8">
+            <h1 className="text-2xl font-bold mb-4">About Carbon Footprint Tracking</h1>
+            <div className="about-content grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              <div className="about-text text-gray-700">
+                <p className="mb-3">Welcome to our Carbon Footprint Tracker! We're dedicated to helping individuals and households understand and reduce their environmental impact. Our platform provides tools and resources to calculate, track, and minimize your carbon emissions.</p>
+                <p className="mb-3">Understanding your carbon footprint is the first step towards making meaningful changes in your lifestyle. By tracking your energy consumption, transportation habits, and daily activities, you can identify areas where you can reduce your environmental impact.</p>
+                <p>Our calculator uses scientifically validated methods to estimate your carbon emissions, providing you with accurate and actionable insights. Whether you're just starting your sustainability journey or looking to optimize your eco-friendly lifestyle, we're here to help.</p>
+              </div>
+              <div className="about-image rounded-lg bg-emerald-50 h-48 flex items-center justify-center">
+                <img src="https://www.siegwerk.com/fileadmin/_processed_/4/6/csm_SW_Carbon_footprint_9f8063814d.png" alt="Carbon illustration" className="max-h-40" />
+              </div>
+            </div>
+
+            <div className="features-grid grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+                <div className="flex items-center gap-3 mb-2"><CalcIcon className="h-5 w-5 text-emerald-600" /><h3 className="text-lg font-medium">Accurate Calculations</h3></div>
+                <p className="text-sm text-gray-600">Precise carbon footprint calculations based on your daily activities and consumption patterns.</p>
+              </motion.div>
+              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+                <div className="flex items-center gap-3 mb-2"><TrendingUp className="h-5 w-5 text-blue-600" /><h3 className="text-lg font-medium">Track Progress</h3></div>
+                <p className="text-sm text-gray-600">Monitor your carbon reduction journey with detailed analytics and progress tracking.</p>
+              </motion.div>
+              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+                <div className="flex items-center gap-3 mb-2"><Lightbulb className="h-5 w-5 text-yellow-600" /><h3 className="text-lg font-medium">Smart Recommendations</h3></div>
+                <p className="text-sm text-gray-600">Receive personalized tips and suggestions to reduce your environmental impact.</p>
+              </motion.div>
+            </div>
+          </section>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50">
       <Toaster />
@@ -529,27 +622,27 @@ export default function App() {
 
         {/* Main Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-6 mb-6">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="data-entry">Data Entry</TabsTrigger>
-            <TabsTrigger value="insights">Insights</TabsTrigger>
-            <TabsTrigger value="calculator">Calculator</TabsTrigger>
-            <TabsTrigger value="chatbot">Chatbot</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsList className="tabs-bar grid w-full grid-cols-6 mb-6">
+            <TabsTrigger className="tab-trigger" value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger className="tab-trigger" value="data-entry">Data Entry</TabsTrigger>
+            <TabsTrigger className="tab-trigger" value="insights">Insights</TabsTrigger>
+            <TabsTrigger className="tab-trigger" value="calculator">Calculator</TabsTrigger>
+            <TabsTrigger className="tab-trigger" value="chatbot">Chatbot</TabsTrigger>
+            <TabsTrigger className="tab-trigger" value="settings">Settings</TabsTrigger>
           </TabsList>
 
           {/* Dashboard Tab */}
           <TabsContent value="dashboard" className="space-y-6">
             {/* Key Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card className="border-emerald-100 card-stunning">
+              <Card className="stat-card border-emerald-100 card-stunning">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Total Emissions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-emerald-600">
-                    {analytics ? `${analytics.totalEmissions.toFixed(0)}` : '0'}
-                  </div>
+                    <div className="stat-number text-emerald-600">
+                      {analytics ? `${Math.round(analytics.totalEmissions).toLocaleString()}` : '0'}
+                    </div>
                   <p className="text-xs text-gray-500 mt-1">kg CO2e</p>
                 </CardContent>
               </Card>
@@ -559,38 +652,38 @@ export default function App() {
                   <CardTitle className="text-sm font-medium text-gray-600">Last Month</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-blue-600">
-                    {analytics ? `${analytics.lastMonthTotal.toFixed(0)}` : '0'}
-                  </div>
+                    <div className="stat-number text-blue-600">
+                      {analytics ? `${Math.round(analytics.lastMonthTotal).toLocaleString()}` : '0'}
+                    </div>
                   <p className="text-xs text-gray-500 mt-1">kg CO2e</p>
                 </CardContent>
               </Card>
 
-              <Card className="border-orange-100 card-stunning">
+              <Card className="stat-card border-orange-100 card-stunning">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Month-over-Month</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className={`text-3xl font-bold flex items-center gap-2 ${
-                    analytics?.monthOverMonthChange > 0 ? 'text-red-600' : 'text-green-600'
-                  }`}>
+                  <div className={`flex items-center gap-2`}> 
                     {analytics?.monthOverMonthChange > 0 ? (
-                      <TrendingUp className="h-6 w-6" />
+                      <TrendingUp className="h-6 w-6 text-red-600" />
                     ) : (
-                      <TrendingDown className="h-6 w-6" />
+                      <TrendingDown className="h-6 w-6 text-green-600" />
                     )}
-                    {analytics ? `${Math.abs(analytics.monthOverMonthChange)}%` : '0%'}
+                    <div className={`stat-number ${analytics?.monthOverMonthChange > 0 ? 'positive' : 'negative'}`}>
+                      {analytics ? `${Math.abs(analytics.monthOverMonthChange)}%` : '0%'}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-100 card-stunning">
+              <Card className="stat-card border-purple-100 card-stunning">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Total Records</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold text-purple-600">
-                    {analytics ? analytics.totalRecords : 0}
+                  <div className="stat-number text-purple-600">
+                    {analytics ? analytics.totalRecords.toLocaleString() : 0}
                   </div>
                   <p className="text-xs text-gray-500 mt-1">data points</p>
                 </CardContent>
@@ -793,15 +886,7 @@ export default function App() {
                   <form onSubmit={handleCSVUpload} className="space-y-4">
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                       <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                      <Label htmlFor="csv-upload" className="cursor-.header-stunning {
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.header-stunning h1 {
-    font-size: 2.5rem;
-    font-family: 'Georgia', serif;
-}pointer">
+                        <Label htmlFor="csv-upload" className="cursor-pointer">
                         <span className="text-sm text-blue-600 hover:text-blue-700 font-medium">
                           Click to upload CSV
                         </span>
@@ -1057,6 +1142,18 @@ export default function App() {
                       <li>Recycled/Composted: 0 lbs CO2/ton</li>
                     </ul>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-emerald-100">
+              <CardHeader>
+                <CardTitle>Contact & Support</CardTitle>
+                <CardDescription>Report issues or contact the team</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="max-w-2xl">
+                  <ContactForm />
                 </div>
               </CardContent>
             </Card>

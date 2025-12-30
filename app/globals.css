@@ -192,3 +192,98 @@ code {
     background: radial-gradient(600px 200px at 10% 30%, rgba(6,95,70,0.06), transparent 10%), radial-gradient(400px 140px at 80% 60%, rgba(59,130,246,0.04), transparent 10%);
     pointer-events: none;
 }
+
+/* Landing hero specific styles */
+.hero-card {
+    background: linear-gradient(180deg, rgba(10, 78, 61, 0.04), rgba(255,255,255,0.6));
+    border-radius: 14px;
+    padding: 2rem;
+    box-shadow: 0 20px 50px rgba(6,95,70,0.06);
+    backdrop-filter: blur(6px) saturate(120%);
+}
+
+.hero-title {
+    background: linear-gradient(90deg, #064e3b, #0ea5a4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.feature-pill {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(16,24,40,0.04);
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #065f46;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+}
+
+.hero-cta .btn-stunning { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 0.6rem; padding-bottom: 0.6rem; }
+
+@media (max-width: 640px) {
+  .hero-card { padding: 1.25rem; }
+  .hero-features { flex-direction: column; gap: 0.5rem; }
+}
+
+/* Floating animation for ThreeScene globe */
+.three-floating { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.btn-stunning { transition: transform 180ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms ease; }
+.btn-stunning:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(6,95,70,0.14); }
+
+.hero-title { letter-spacing: -0.02em; }
+
+/* Tabs and stats styling */
+.tabs-bar {
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.04);
+}
+.tab-trigger {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: rgba(15,23,42,0.8);
+    transition: all 160ms ease;
+}
+.tab-trigger:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(2,6,23,0.06); }
+.tab-trigger[aria-selected="true"] { background: linear-gradient(90deg,#10b981,#06b6d4); color: white; box-shadow: 0 18px 50px rgba(6,95,70,0.12); }
+
+.stat-number { font-size: 2.25rem; font-weight: 800; line-height: 1; }
+.stat-number.positive { color: #ef4444; }
+.stat-number.negative { color: #10b981; }
+.stat-card { background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7)); border-radius: 12px; padding:1rem; }
+
+/* subtle pulse for important CTA */
+.pulse { animation: pulse 2.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.12);} 70% { box-shadow: 0 0 0 12px rgba(16,185,129,0);} 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0);} }
+
+
+/* About & Contact styles */
+.about-section {
+    --tw-shadow: 0 8px 30px rgba(2,6,23,0.04);
+}
+.about-content img { max-width: 100%; border-radius: 8px; }
+.features-grid .feature-card { transition: transform 180ms ease, box-shadow 180ms ease; }
+.features-grid .feature-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(6,95,70,0.06); }
+.contact-section .contact-form input, .contact-section .contact-form textarea { border: 1px solid rgba(15,23,42,0.06); }
+.contact-section .contact-form button { margin-top: 0.5rem; }
+.tips-grid .tip-item { border: 1px solid rgba(15,23,42,0.03); }
+
+/* Small niceties */
+.about-image { display:flex; align-items:center; justify-content:center; }
+.feature-card h3 { margin: 0; }
