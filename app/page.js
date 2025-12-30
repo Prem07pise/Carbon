@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { LineChart, Line, PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { Calendar, TrendingDown, TrendingUp, AlertCircle, Upload, Plus, Trash2, FileDown, Lightbulb, Calculator as CalcIcon, Home, Car, ShoppingBag, Repeat, Leaf, Droplet } from 'lucide-react';
-import { motion } from 'framer-motion';
+// framer-motion removed to avoid deployment peer dependency conflicts
 import { useToast } from '@/hooks/use-toast';
 import ThreeScene from '@/components/ui/three-scene';
 import { jsPDF } from 'jspdf';
@@ -465,24 +465,12 @@ export default function App() {
         <Toaster />
         <main className="container mx-auto px-4 py-24 text-center">
           <div className="max-w-3xl mx-auto hero-card text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center text-center"
-            >
-              <motion.div whileHover={{ scale: 1.03 }} className="w-40 h-40 mx-auto rounded mb-6 shadow-md three-floating">
+            <div className="flex flex-col items-center text-center">
+              <div className="w-40 h-40 mx-auto rounded mb-6 shadow-md three-floating">
                 <ThreeScene className="w-full h-full rounded" />
-              </motion.div>
+              </div>
 
-              <motion.h1
-                initial={{ scale: 0.99 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="text-5xl font-extrabold hero-title mb-4"
-              >
-                Carbon Footprint Analytics
-              </motion.h1>
+              <h1 className="text-5xl font-extrabold hero-title mb-4">Carbon Footprint Analytics</h1>
 
               <p className="text-lg text-gray-700 max-w-2xl mb-6">
                 Understand and reduce your organisation's carbon emissions with clear metrics, trends, and AI-driven recommendations. Track emissions by category and department, import data, and export reports.
@@ -495,22 +483,22 @@ export default function App() {
               </div>
 
               <div className="mt-6 hero-cta flex items-center justify-center gap-4">
-                <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }}>
+                <div>
                   <Button onClick={() => { setStarted(true); setActiveTab('dashboard'); }} className="btn-stunning pulse">
                     Get Started
                   </Button>
-                </motion.div>
-                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+                </div>
+                <div>
                   <Button variant="outline" onClick={() => setStarted(true)} className="rounded border border-emerald-200 px-5 py-3 text-emerald-700 hover:bg-emerald-50">
                     Explore App
                   </Button>
-                </motion.div>
+                </div>
               </div>
 
               <div className="mt-6 text-sm text-gray-600">
                 <p><strong>Why it matters:</strong> Measuring your carbon footprint is the first step toward meaningful reduction — leading to cost savings and better sustainability outcomes.</p>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* About Section */}
@@ -528,18 +516,18 @@ export default function App() {
             </div>
 
             <div className="features-grid grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+              <div className="feature-card card-stunning p-4">
                 <div className="flex items-center gap-3 mb-2"><CalcIcon className="h-5 w-5 text-emerald-600" /><h3 className="text-lg font-medium">Accurate Calculations</h3></div>
                 <p className="text-sm text-gray-600">Precise carbon footprint calculations based on your daily activities and consumption patterns.</p>
-              </motion.div>
-              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+              </div>
+              <div className="feature-card card-stunning p-4">
                 <div className="flex items-center gap-3 mb-2"><TrendingUp className="h-5 w-5 text-blue-600" /><h3 className="text-lg font-medium">Track Progress</h3></div>
                 <p className="text-sm text-gray-600">Monitor your carbon reduction journey with detailed analytics and progress tracking.</p>
-              </motion.div>
-              <motion.div whileHover={{ y: -6 }} whileTap={{ scale: 0.995 }} className="feature-card card-stunning p-4">
+              </div>
+              <div className="feature-card card-stunning p-4">
                 <div className="flex items-center gap-3 mb-2"><Lightbulb className="h-5 w-5 text-yellow-600" /><h3 className="text-lg font-medium">Smart Recommendations</h3></div>
                 <p className="text-sm text-gray-600">Receive personalized tips and suggestions to reduce your environmental impact.</p>
-              </motion.div>
+              </div>
             </div>
           </section>
         </main>
